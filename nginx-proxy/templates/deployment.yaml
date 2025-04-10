@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy
+  labels:
+    id: c0929851
+    app: nginx
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      id: c0929851
+  template:
+    metadata:
+      labels:
+        id: c0929851
+        app: nginx
+        env: dev
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-config
