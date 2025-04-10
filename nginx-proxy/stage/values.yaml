@@ -1,4 +1,4 @@
-db:
+nginx:
   name: c0929851
   labels:
     id: c0929851

@@ -1,4 +1,4 @@
-db:
+nginx:
   name: c0929851
   labels:
     id: c0929851
@@ -6,9 +6,9 @@ db:
     env: dev
     stack: wordpress
   image:
-    repository: mariadb:10.6.4-focal
-    tag: v2
-    pullPolicy: Always
+    repository: nginx
+    tag: stable
+    pullPolicy: IfNotPresent
   replicas: 1
   configmap:
     ## KEY: "value"
@@ -17,3 +17,8 @@ db:
     APP_ENV: dev
   containerPorts:
       mysql: 3306
+  service:
+    type: LoadBalancer
+    port: 80
+
+  replicaCount: 1

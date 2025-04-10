@@ -5,7 +5,7 @@ wp:
     env: dev
     stack: wordpress
   image:
-    repository: msalim22/wp
+    repository: wordpress:latest
     tag: v2
     pullPolicy: Always
   replicas: 5
@@ -22,8 +22,8 @@ wp:
   configmap:
     ## KEY: "value"
     WORDPRESS_DB_HOST: "wp-database.wpdb.svc.cluster.local:3306"
-    WORDPRESS_DB_USER: 3324_user
-    WORDPRESS_DB_NAME: c0929851
+    WORDPRESS_DB_USER: "3324_user"
+    WORDPRESS_DB_NAME: "c0929851"
     APP_ENV: dev
   containerPorts:
       http: 80
