@@ -1,32 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-proxy
+  name: {{ .Values.nginx.name }}
   labels:
-    id: c0929851
-    app: nginx
-    env: dev
+{{- toYaml .Values.nginx.labels | nindent 4 }}
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      id: c0929851
+{{- toYaml .Values.nginx.labels | nindent 6 }}
+  replicas: {{ .Values.nginx.replicas }}
   template:
     metadata:
       labels:
-        id: c0929851
-        app: nginx
-        env: dev
+{{- toYaml .Values.nginx.labels | nindent 8 }}
     spec:
       containers:
-        - name: nginx
-          image: nginx:stable
-          volumeMounts:
-            - name: nginx-conf
-              mountPath: /etc/nginx/conf.d
-          ports:
-            - containerPort: 80
-      volumes:
-        - name: nginx-conf
-          configMap:
-            name: nginx-config
+      - name: {{ .Values.nginx.name }}
+        image: {{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}
+        imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+        envFrom:
+          - configMapRef:
+              name: {{ .Values.nginx.name }}-configmap
+              optional: false
+          - secretRef:
+              name: {{ .Values.nginx.name }}-secret
+              optional: false
+        ports:
+        - containerPort: {{ .Values.nginx.containerPorts.http }}

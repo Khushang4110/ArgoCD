@@ -1,18 +1,18 @@
 db:
-  name: wp-database
+  name: c0929851
   labels:
     app: db
     env: dev
     stack: wordpress
   image:
-    repository: msalim22/wpdb
+    repository: mariadb:10.6.4-focal
     tag: v2
     pullPolicy: Always
   replicas: 1
   configmap:
     ## KEY: "value"
     MYSQL_DATABASE: wordpress
-    MYSQL_USER: wordpress
+    MYSQL_USER: 3324_user
     APP_ENV: dev
   containerPorts:
       mysql: 3306
