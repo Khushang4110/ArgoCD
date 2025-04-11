@@ -6,8 +6,8 @@ wp:
     env: dev
     stack: wordpress
   image:
-    repository: wordpress:latest
-    tag: v2
+    repository: wordpress
+    tag: latest
     pullPolicy: Always
   replicas: 3
   configmap:
