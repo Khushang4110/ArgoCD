@@ -9,7 +9,7 @@ wp:
     repository: wordpress
     tag: latest
     pullPolicy: Always
-  replicas: 3
+  replicas: 5
   configmap:
     ## KEY: "value"
     APP_ENV: "dev"
