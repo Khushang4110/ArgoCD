@@ -13,7 +13,7 @@ wp:
   configmap:
     ## KEY: "value"
     APP_ENV: "dev"
-    WORDPRESS_DB_HOST: "wp-database.wpdb.svc.cluster.local"
+    WORDPRESS_DB_HOST: "c0929851.wpdb.svc.cluster.local"
     WORDPRESS_DB_NAME: "c0929851"
     WORDPRESS_DB_USER: "3324_user"
   containerPorts:
