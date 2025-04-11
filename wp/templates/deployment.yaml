@@ -4,6 +4,11 @@ metadata:
   name: {{ .Values.wp.name }}
   labels:
 {{- toYaml .Values.wp.labels | nindent 4 }}
+env:
+{{- range $key, $value := .Values.env }}
+  - name: {{ $key }}
+    value: {{ $value | quote }}
+{{- end }}
 spec:
   selector:
     matchLabels:
@@ -27,3 +32,5 @@ spec:
               optional: false
         ports:
         - containerPort: {{ .Values.wp.containerPorts.http }}
+
+        
