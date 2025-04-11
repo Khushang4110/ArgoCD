@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.nginx.name }}-configmap
   labels: 
-{{- toYaml .Values.db.labels | nindent 4 }}
+{{- toYaml .Values.nginx.labels | nindent 4 }}
 data:
   default.conf: |
     server {
